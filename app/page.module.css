@@ -1,0 +1,18 @@
+
+.page {
+	display: flex;
+	flex-direction: column;
+	background-color: #17171e;
+	color: #d8d8e2;
+	padding: 20px;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+}
+
+.secondScreen {
+    height: 80vh;
+	padding: 50px;
+	color: white;
+}
+

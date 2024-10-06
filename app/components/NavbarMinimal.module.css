@@ -1,0 +1,59 @@
+.navbar {
+    width: fit-content;
+    padding: 10px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #1c1c26;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    transition: left 0.1s;
+}
+
+.collapsed {
+    width: 0px;
+    padding: 0px;
+}
+
+.navbarMain {
+    flex: 1;
+    margin-top: 50px;
+    transition: opacity 0.3s ease;
+}
+
+.hidden {
+    display: none;
+}
+
+.link {
+    width: 50px;
+    height: 50px;
+    border-radius: var(--mantine-radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+        color: light-dark(
+            var(--mantine-color-gray-0),
+            var(--mantine-color-dark-5)
+        );
+    }
+
+    &[data-active] {
+        &,
+        &:hover {
+            background-color: var(--mantine-color-blue-light);
+            color: white;
+        }
+    }
+}
+
+.topButton {
+    position: fixed;
+    top: 10px;
+    z-index: 20;
+    padding: 10px 20px 20px 20px;
+}

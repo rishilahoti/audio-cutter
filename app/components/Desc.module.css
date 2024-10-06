@@ -1,0 +1,42 @@
+.descContainer {
+	margin: auto;
+	padding: 40px;
+	font-size: 40px;
+}
+
+.Firsttext {
+	font-size: 50px;
+	color: #d8d8e2;
+	margin-bottom: 20px;
+    font-weight: 400;
+}
+
+.description {
+	margin-top: 20px;
+	font-size: 24px;
+	line-height: 1.6;
+	color: #bdbdc7;
+	background-color: #1f1f28;
+	padding: 20px;
+	border-left: 3px solid #665dc3;
+}
+
+.security {
+	display: flex;
+	margin-top: 30px;
+	align-items: center;
+}
+
+.secText {
+	font-size: 24px;
+}
+
+.securityText {
+	margin-top: 10px;
+	font-size: 24px;
+	line-height: 1.6;
+	color: #bdbdc7;
+	background-color: #1f1f28;
+	padding: 20px;
+	border-left: 3px solid #665dc3;
+}
