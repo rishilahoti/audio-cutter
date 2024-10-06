@@ -109,7 +109,6 @@ const AudioCutter: React.FC<AudioCutterProps> = ({ onNavClick }) => {
 				title="Audio Preview"
 				centered
 				size="xl"
-				classNames={{ modal: styles.modal }}
 			>
 				<div id="waveform" className={styles.waveform}></div>
 
