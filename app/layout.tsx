@@ -1,6 +1,6 @@
 import '@mantine/core/styles.css';
 import './globals.css'
-import { ColorSchemeScript, MantineProvider, createTheme } from '@mantine/core';
+import { ColorSchemeScript, MantineProvider} from '@mantine/core';
 import { NavbarMinimal } from './components/Nav';
 
 export const metadata = {

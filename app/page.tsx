@@ -4,6 +4,7 @@ import styles from './page.module.css';
 import Desc from './components/Desc';
 import AudioCutter from './components/AudioCutter';
 
+
 export default function HomePage() {
 	const [showStickyNav, setShowStickyNav] = useState(false);
 	const secondScreenRef = useRef<HTMLDivElement>(null);
@@ -11,7 +12,7 @@ export default function HomePage() {
 	useEffect(() => {
 		const observer = new IntersectionObserver(
 			([entry]) => {
-				setShowStickyNav(entry.isIntersecting);
+				setShowStickyNav(!entry.isIntersecting);
 			},
 			{
 				root: null,
@@ -20,13 +21,14 @@ export default function HomePage() {
 			}
 		);
 
-		if (secondScreenRef.current) {
-			observer.observe(secondScreenRef.current);
+		const currentRef = secondScreenRef.current;
+		if (currentRef) {
+			observer.observe(currentRef);
 		}
 
 		return () => {
-			if (secondScreenRef.current) {
-				observer.unobserve(secondScreenRef.current);
+			if (currentRef) {
+				observer.unobserve(currentRef);
 			}
 		};
 	}, []);
@@ -40,7 +42,9 @@ export default function HomePage() {
 
 	return (
 		<div className={styles.page}>
-			<div id="firstScreen">
+			
+
+			<div id="firstScreen" className={`${styles.nav} ${showStickyNav ? styles.sticky : ''}`}>
 				<AudioCutter onNavClick={scrollToSection} />
 			</div>
 			<div

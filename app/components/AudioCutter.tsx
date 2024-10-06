@@ -24,8 +24,9 @@ const AudioCutter: React.FC<AudioCutterProps> = ({ onNavClick }) => {
 	const [cutRange, setCutRange] = useState<[number, number]>([0, 100]);
 	const waveSurferRef = useRef<WaveSurfer | null>(null);
 	const [modalOpen, setModalOpen] = useState(false);
-	const [format, setFormat] = useState('mp3'); // Added format state
+	const [format, setFormat] = useState('mp3');
 
+	// Handle file selection and load waveform
 	const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const file = event.target.files?.[0];
 		if (file) {
@@ -54,14 +55,17 @@ const AudioCutter: React.FC<AudioCutterProps> = ({ onNavClick }) => {
 	const handleCutAudio = () => {
 		if (!waveSurferRef.current) return;
 
+		setIsCutting(true);
+
 		const duration = waveSurferRef.current.getDuration();
-		const [start, end] = cutRange.map((val) => val / 100); // convert percentage to decimal
+		const [start, end] = cutRange.map((val) => val / 100);
 
 		waveSurferRef.current.seekTo(start);
 		waveSurferRef.current.play();
 
 		setTimeout(() => {
 			waveSurferRef.current?.pause();
+			setIsCutting(false);
 		}, (end - start) * duration * 1000);
 	};
 
@@ -103,6 +107,12 @@ const AudioCutter: React.FC<AudioCutterProps> = ({ onNavClick }) => {
 				Browse my files
 			</Button>
 
+			{audioFile && (
+				<Group mt="md">
+					<Text>Selected file: {audioFile.name}</Text>
+				</Group>
+			)}
+
 			<Modal
 				opened={modalOpen}
 				onClose={() => setModalOpen(false)}
@@ -130,7 +140,9 @@ const AudioCutter: React.FC<AudioCutterProps> = ({ onNavClick }) => {
 				</Group>
 
 				<Group mt="md" className={styles.buttonGroup}>
-					<Button onClick={handleCutAudio}>Cut</Button>
+					<Button onClick={handleCutAudio} disabled={isCutting}>
+						{isCutting ? 'Cutting...' : 'Cut'}
+					</Button>
 					<Button color="red" onClick={() => setAudioFile(null)}>
 						Remove
 					</Button>
